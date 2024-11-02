@@ -7,7 +7,7 @@ export async function createGoal({
   title,
   desiredWeeklyFrequency,
 }: CreateGoalType) {
-  await fetch('http://localhost:3333/goals', {
+  await fetch(`${import.meta.env.API_URL}/goals`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
