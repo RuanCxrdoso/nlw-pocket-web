@@ -7,7 +7,11 @@ export async function createGoal({
   title,
   desiredWeeklyFrequency,
 }: CreateGoalType) {
-  await fetch(`${import.meta.env.API_URL}/goals`, {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  if (!apiUrl) {
+    throw new Error("API_URL is not defined");
+  }
+  await fetch(`${apiUrl}/goals`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

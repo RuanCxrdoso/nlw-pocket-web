@@ -1,7 +1,11 @@
 export async function createGoalCompletion(
   goalId: string
 ) {
-  await fetch(`${import.meta.env.API_URL}/completions`, {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  if (!apiUrl) {
+    throw new Error("API_URL is not defined");
+  }
+  await fetch(`${apiUrl}/completions`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -10,5 +14,4 @@ export async function createGoalCompletion(
       goalId,
     }),
   })
-
 }
